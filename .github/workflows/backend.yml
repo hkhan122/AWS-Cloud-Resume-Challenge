@@ -1,0 +1,64 @@
+name: Backend Deploy (SAM)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+      - 'template.yaml'
+      - 'samconfig.toml'
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+  ARTIFACT_BUCKET: ${{ vars.AWS_ARTIFACT_BUCKET }}
+  STACK_NAME: ${{ vars.AWS_STACK_NAME }}
+  DOMAIN_NAME: hamza-khan.com
+  HOSTED_ZONE_ID: ${{ vars.AWS_HOSTED_ZONE_ID }}
+  CERT_ARN: ${{ secrets.AWS_CERT_ARN }}
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::YOUR_AWS_ACCOUNT_ID:role/GithubDeployRole
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Install SAM CLI
+        uses: aws-actions/setup-sam@v2
+
+      - name: SAM Build
+        run: sam build --template template.yaml
+
+      - name: SAM Deploy
+        run: |
+          sam deploy \
+            --stack-name ${STACK_NAME} \
+            --region ${AWS_REGION} \
+            --s3-bucket ${ARTIFACT_BUCKET} \
+            --capabilities CAPABILITY_IAM \
+            --no-fail-on-empty-changeset \
+            --parameter-overrides \
+              DomainName=${DOMAIN_NAME} \
+              HostedZoneId=${HOSTED_ZONE_ID} \
+              CertificateArn=${CERT_ARN}
+
+      - name: Grab API URL from stack outputs
+        id: api
+        run: |
+          API_URL=$(aws cloudformation describe-stacks --stack-name ${STACK_NAME} --query "Stacks[0].Outputs[?OutputKey=='ApiURL'].OutputValue" --output text)
+          echo "api_url=${API_URL}" >> $GITHUB_OUTPUT
+
+      - name: Integration smoke test (curl)
+        run: |
+          echo "Hitting ${{ steps.api.outputs.api_url }}"
+          curl -sS -m 10 -o /dev/null -w "%{http_code}\n" "${{ steps.api.outputs.api_url }}" | grep -E "200|204"

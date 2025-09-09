@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hamza Khan — Resume</title>
+  <meta name="description" content="Resume website for Hamza Khan: projects, experience, skills, and contact." />
+  <meta property="og:title" content="Hamza Khan — Resume" />
+  <meta property="og:description" content="Projects, experience, skills, and contact." />
+  <meta property="og:type" content="website" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%230090ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='54' fill='white' font-family='Arial'%3EH%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --card: #111218;
+      --text: #e8e8ea;
+      --muted: #b8b8bf;
+      --brand: #5cc8ff;
+      --accent: #8fff8f;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    @media (prefers-color-scheme: light) {
+      :root { --bg:#f7f7fb; --card:#ffffff; --text:#16171b; --muted:#555b66; --brand:#0066ff; --accent:#22aa66; }
+    }
+    html, body { height: 100%; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; 
+      color: var(--text); background: radial-gradient(1200px 600px at 10% -10%, rgba(92,200,255,.12), transparent 40%),
+               radial-gradient(800px 400px at 100% 0, rgba(34,170,102,.10), transparent 35%), var(--bg);
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1050px; margin: 0 auto; padding: 0 20px; }
+    header {
+      position: sticky; top: 0; backdrop-filter: saturate(1.2) blur(8px);
+      background: color-mix(in oklab, var(--bg) 80%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+      z-index: 10;
+    }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap: 12px; padding: 14px 0; }
+    .nav a.brand { font-weight: 800; letter-spacing:.3px; font-size: 1.05rem; color: var(--text); text-decoration:none; }
+    .nav ul { display:flex; gap: 16px; list-style:none; padding:0; margin:0; }
+    .nav li a { display:inline-block; padding:8px 10px; border-radius: 10px; }
+    .nav li a:hover { background: color-mix(in oklab, var(--text) 8%, transparent); text-decoration:none; }
+    .btn { display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border:1px solid color-mix(in oklab, var(--text) 16%, transparent); border-radius: 12px; background: var(--card); box-shadow: var(--shadow); color: var(--text); text-decoration:none; }
+    .btn:hover { border-color: color-mix(in oklab, var(--brand) 60%, var(--text) 16%); }
+
+    .hero { padding: 64px 0 32px; display:grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items:center; }
+    .badge { display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; font-size:.9rem; color: var(--text); background: color-mix(in oklab, var(--brand) 25%, transparent); border: 1px solid color-mix(in oklab, var(--brand) 60%, transparent); }
+    .title { font-size: clamp(1.8rem, 2.8vw, 2.6rem); margin: 12px 0 8px; line-height:1.2; }
+    .subtitle { color: var(--muted); margin: 0 0 20px; }
+    .taglist { display:flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; }
+    .tag { font-size:.85rem; padding:6px 10px; border-radius:999px; border:1px solid color-mix(in oklab, var(--text) 16%, transparent); color: var(--muted); }
+    .avatar { width: 160px; aspect-ratio:1; border-radius: 24px; background: linear-gradient(135deg, color-mix(in oklab, var(--brand) 30%, transparent), color-mix(in oklab, var(--accent) 30%, transparent)); display:grid; place-items:center; color:white; font-weight:900; font-size:48px; box-shadow: var(--shadow); }
+
+    section { padding: 36px 0; }
+    .grid { display:grid; gap: 18px; }
+    .cards { display:grid; gap:18px; grid-template-columns: repeat(12, 1fr); }
+    .card { grid-column: span 12; background: var(--card); border:1px solid color-mix(in oklab, var(--text) 12%, transparent); border-radius: 16px; padding: 18px; box-shadow: var(--shadow); }
+    .card h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .row { display:flex; align-items:center; justify-content:space-between; gap: 10px; }
+    .muted { color: var(--muted); font-size: .95rem; }
+
+    .skills { display:flex; flex-wrap:wrap; gap:10px; }
+    .skill { padding:8px 10px; border-radius:12px; background: color-mix(in oklab, var(--text) 6%, transparent); border:1px solid color-mix(in oklab, var(--text) 12%, transparent); }
+
+    footer { padding: 30px 0 70px; color: var(--muted); }
+
+    /* Print styles */
+    @media print {
+      header, .btn, .badge { display: none !important; }
+      body { background: #fff; color: #000; }
+      .card { box-shadow: none; border-color: #ccc; }
+      a { color: #000; text-decoration: none; }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .nav ul { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#top" class="brand">Hamza Khan</a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><button class="btn" id="themeBtn" type="button" aria-label="Toggle theme">🌗 Theme</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <div>
+        <span class="badge" aria-label="status">Open to internships · 2026</span>
+        <h1 class="title">Computer Science @ UIC — Full‑Stack + Cloud‑curious</h1>
+        <p class="subtitle">I like building fast, clean, and reliable apps. Currently working on a Cloud Resume Challenge and a Math 24 game.</p>
+        <div class="taglist" aria-label="Top skills">
+          <span class="tag">C/C++</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Node/Express</span>
+          <span class="tag">Python</span>
+          <span class="tag">AWS</span>
+        </div>
+        <p style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="mailto:hkhan205@uic.edu">Email</a>
+          <a class="btn" href="https://linkedin.com/in/hamza-khan-39a761309" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="#" id="resumeLink">Download PDF</a>
+        </p>
+        <p class="muted" id="visitors">Visitors: —</p>
+      </div>
+      <div class="avatar" aria-hidden="true">
+        <img src="my-photo.jpg" alt="Hamza Khan" style="width: 100%; height: 100%; object-fit: cover; border-radius: 24px;">
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <div class="card">
+        <p>
+          U.S. citizen based in Naperville, IL. I enjoy backend performance problems, tidy UI, and learning cloud.
+          I’ve done research on AI for power systems and built projects that use algorithms and clean, modular code.
+        </p>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="cards">
+        <article class="card" aria-labelledby="p1">
+          <div class="row">
+            <h3 id="p1">Solve24 — Math Puzzle Game</h3>
+            <span class="muted">React · Node · Express</span>
+          </div>
+          <ul>
+            <li>Interactive game to reach 24 using four numbers; includes practice and 60‑sec timed modes.</li>
+            <li>Implemented solution validation ensuring all four numbers are used; session scoring & progress.</li>
+            <li>REST APIs for move validation, game state, and user stats; responsive UI with hooks/context.</li>
+          </ul>
+          <p class="muted">Planned: realtime multiplayer via WebSockets.</p>
+        </article>
+
+        <article class="card" aria-labelledby="p2">
+          <div class="row">
+            <h3 id="p2">OpenStreetMap Shortest Path</h3>
+            <span class="muted">C++ · Dijkstra · Graphs</span>
+          </div>
+          <ul>
+            <li>Built a graph of city streets and found shortest path to a midpoint between two buildings.</li>
+            <li>Implemented Dijkstra with careful data structures for accuracy and performance.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <article class="card">
+        <div class="row">
+          <h3>Research Intern — AI Applications for Power Systems</h3>
+          <span class="muted">UIC Internship Program · Jun–Aug 2024 · Chicago, IL</span>
+        </div>
+        <ul>
+          <li>Reviewed ML approaches for power systems; summarized trends and findings for stakeholders.</li>
+          <li>Evaluated algorithm effectiveness and presented insights; strengthened analytical communication.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="card">
+        <div class="skills">
+          <span class="skill">C++</span>
+          <span class="skill">C</span>
+          <span class="skill">Python</span>
+          <span class="skill">Java</span>
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">React</span>
+          <span class="skill">Node.js</span>
+          <span class="skill">Express</span>
+          <span class="skill">Linux</span>
+          <span class="skill">Data Structures & Algos</span>
+          <span class="skill">Machine Learning (basics)</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card grid">
+        <div class="row">
+          <div>
+            <p>Email: <a href="mailto:hkhan205@uic.edu">hkhan205@uic.edu</a></p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/hamza-khan-39a761309" target="_blank" rel="noopener">/in/hamza-khan-39a761309</a></p>
+          </div>
+          <form id="contactForm" class="grid" style="min-width:280px; gap:10px;">
+            <label>
+              <span class="muted">Quick message</span>
+              <textarea name="message" rows="3" placeholder="Hello!" style="width:100%; border-radius:12px; padding:10px; border:1px solid color-mix(in oklab, var(--text) 16%, transparent); background: transparent; color: var(--text);"></textarea>
+            </label>
+            <button class="btn" type="submit">Send</button>
+            <p class="muted" id="contactStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <p>© <span id="year"></span> Hamza Khan. Built with semantic HTML, a dash of CSS, and vanilla JS. <span class="muted">(Ready for CloudFront/S3.)</span></p>
+  </footer>
+
+  <script>
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    // Theme toggle (persists in localStorage)
+    const themeBtn = document.getElementById('themeBtn');
+    const applyTheme = (mode) => {
+      document.documentElement.dataset.theme = mode;
+      if (mode === 'light') {
+        document.documentElement.style.colorScheme = 'light';
+      } else {
+        document.documentElement.style.colorScheme = 'dark';
+      }
+    };
+    const stored = localStorage.getItem('theme');
+    if (stored) applyTheme(stored);
+    themeBtn.addEventListener('click', () => {
+      const mode = (document.documentElement.dataset.theme === 'light') ? 'dark' : 'light';
+      localStorage.setItem('theme', mode);
+      applyTheme(mode);
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Contact form: placeholder handler (replace with your backend/API Gateway endpoint)
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = document.getElementById('contactStatus');
+      status.textContent = 'Sending…';
+      try {
+        // TODO: replace with your API endpoint (AWS Lambda + API Gateway)
+        // await fetch('https://api.example.com/contact', { method:'POST', body: new FormData(e.target) });
+        await new Promise(r => setTimeout(r, 600)); // demo only
+        status.textContent = 'Thanks! I will get back to you.';
+        e.target.reset();
+      } catch(err) {
+        status.textContent = 'Something went wrong. Please email me directly.';
+      }
+    });
+
+    // Visitor count: placeholder (wire to DynamoDB/Lambda later)
+    (async function() {
+      const el = document.getElementById('visitors');
+      try {
+        // TODO: replace with your GET endpoint, e.g. https://api.example.com/visitors
+        // const res = await fetch('https://api.example.com/visitors');
+        // const { count } = await res.json();
+        const res = await fetch("https://3lgeqj8yjk.execute-api.us-east-1.amazonaws.com/prod/visitors");
+        const data = await res.json();
+        const count = data.visits;
+        el.textContent = `Visitors: ${count}`;
+      } catch {
+        el.textContent = 'Visitors: —';
+      }
+    })();
+
+    // Download resume PDF link placeholder — replace with your file path
+    document.getElementById('resumeLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Attach your PDF resume and update the link href to your file.');
+    });
+  </script>
+
+  <!-- Structured data for richer search previews -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Hamza Khan",
+    "email": "mailto:hkhan205@uic.edu",
+    "url": "https://example.com/",
+    "sameAs": [
+      "https://linkedin.com/in/hamza-khan-39a761309"
+    ],
+    "jobTitle": "Computer Science Student",
+    "alumniOf": [{"@type":"CollegeOrUniversity","name":"University of Illinois Chicago"}],
+    "knowsAbout": ["C++", "React", "Node.js", "Data Structures", "AWS"]
+  }
+  </script>
+</body>
+</html>

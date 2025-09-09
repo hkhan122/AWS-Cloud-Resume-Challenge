@@ -1,0 +1,12 @@
+version = 0.1
+
+[default.deploy.parameters]
+stack_name = "resumeproject"
+s3_bucket = "sam-artifacts-hamza-0908"
+s3_prefix = "resumeproject"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+parameter_overrides = "DomainName=\"hamza-khan.com\" HostedZoneId=\"Z1011738XG4X3UXUXWNB\" CertificateArn=\"arn:aws:acm:us-east-1:011528301997:certificate/6b437187-42dd-4953-bc23-d62d55f1135c\""
+image_repositories = []
