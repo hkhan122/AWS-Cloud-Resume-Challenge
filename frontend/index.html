@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hamza Khan — Resume</title>
+  <title>Hamza Khan</title>
   <meta name="description" content="Resume website for Hamza Khan: projects, experience, skills, and contact." />
-  <meta property="og:title" content="Hamza Khan — Resume" />
+  <meta property="og:title" content="Hamza Khan" />
   <meta property="og:description" content="Projects, experience, skills, and contact." />
   <meta property="og:type" content="website" />
   <meta name="color-scheme" content="light dark" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%230090ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='54' fill='white' font-family='Arial'%3EH%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="logo.png" />
   <style>
     :root {
       --bg: #0b0c10;
@@ -104,21 +104,13 @@
   <main id="top" class="container">
     <section class="hero">
       <div>
-        <span class="badge" aria-label="status">Open to internships · 2026</span>
+        <span class="badge" aria-label="status">Open to internships · Summer 2026</span>
         <h1 class="title">Computer Science @ UIC — Full‑Stack + Cloud‑curious</h1>
-        <p class="subtitle">I like building fast, clean, and reliable apps. Currently working on a Cloud Resume Challenge and a Math 24 game.</p>
-        <div class="taglist" aria-label="Top skills">
-          <span class="tag">C/C++</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">React</span>
-          <span class="tag">Node/Express</span>
-          <span class="tag">Python</span>
-          <span class="tag">AWS</span>
-        </div>
+        <p class="subtitle">Welcome to my website! Take a look around and learn more about me.</p>
         <p style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="btn" href="mailto:hkhan205@uic.edu">Email</a>
-          <a class="btn" href="https://linkedin.com/in/hamza-khan-39a761309" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="#" id="resumeLink">Download PDF</a>
+          <a class="btn" href="mailto:khanhamza2293@gmail.com">Email</a>
+          <a class="btn" href="https://linkedin.com/in/hamzakhan205" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="Hamza Khan.pdf" id="resumeLink" download="Hamza_Khan_Resume.pdf">Resume</a>
         </p>
         <p class="muted" id="visitors">Visitors: —</p>
       </div>
@@ -131,8 +123,7 @@
       <h2>About</h2>
       <div class="card">
         <p>
-          U.S. citizen based in Naperville, IL. I enjoy backend performance problems, tidy UI, and learning cloud.
-          I’ve done research on AI for power systems and built projects that use algorithms and clean, modular code.
+          Hey! I’m Hamza, a Computer Science student who loves building full-stack apps and diving into cloud technologies. I’m passionate about finding practical ways tech can solve real-world problems, and I’m always excited to learn, experiment, and grow. Scroll down to learn more about my projects and experiences!
         </p>
       </div>
     </section>
@@ -142,25 +133,42 @@
       <div class="cards">
         <article class="card" aria-labelledby="p1">
           <div class="row">
+            <h3 id="p1">AWS Cloud Resume Challenge</h3>
+            <span class="muted">AWS · IaC · CI/CD Pipelines</span>
+          </div>
+          <ul>
+            <li>Built and deployed a serverless resume website on AWS using S3, CloudFront, and Route 53, making it fast and accessible worldwide.</li>
+            <li>Added a backend with AWS Lambda + DynamoDB to track visitors — logged 50+ visits in the first month.</li>
+            <li>Used AWS SAM to automate infrastructure setup, making updates and scaling much easier.</li>
+            <li>Set up CI/CD pipelines with GitHub Actions, cutting deployment time down to under 2 minutes.</li>
+          </ul>
+          <p class="muted">Psst. You're on the cloud right now!</p>
+        </article>
+        
+        <article class="card" aria-labelledby="p1">
+          <div class="row">
             <h3 id="p1">Solve24 — Math Puzzle Game</h3>
             <span class="muted">React · Node · Express</span>
           </div>
           <ul>
             <li>Interactive game to reach 24 using four numbers; includes practice and 60‑sec timed modes.</li>
             <li>Implemented solution validation ensuring all four numbers are used; session scoring & progress.</li>
-            <li>REST APIs for move validation, game state, and user stats; responsive UI with hooks/context.</li>
+            <li>Developed a responsive UI in React.js using hooks and context for efficient state management across multiple
+              components</li>
+            <li>Created REST APIs for move validation, game state, and user stats using Node.js and Express</li>
           </ul>
-          <p class="muted">Planned: realtime multiplayer via WebSockets.</p>
         </article>
 
         <article class="card" aria-labelledby="p2">
           <div class="row">
-            <h3 id="p2">OpenStreetMap Shortest Path</h3>
-            <span class="muted">C++ · Dijkstra · Graphs</span>
+            <h3 id="p2">Resume Analyzer — AI-Powered Resume Feedback Tool</h3>
+            <span class="muted">Flask · Mistral AI · JavaScript</span>
           </div>
           <ul>
-            <li>Built a graph of city streets and found shortest path to a midpoint between two buildings.</li>
-            <li>Implemented Dijkstra with careful data structures for accuracy and performance.</li>
+            <li>Developed a responsive web app with a drag-and-drop file upload UI supporting PDF, DOCX, and TXT formats</li>
+            <li>Integrated Mistral-7B-Instruct to analyze Experience, Education, Skills, and Projects with section scores (1–10)</li>
+            <li>Implemented structured feedback with actionable recommendations through a clean, user-friendly interface</li>
+            <li>Built a local analysis fallback system and added robust error handling to ensure reliability during API downtime</li>
           </ul>
         </article>
       </div>
@@ -174,8 +182,10 @@
           <span class="muted">UIC Internship Program · Jun–Aug 2024 · Chicago, IL</span>
         </div>
         <ul>
-          <li>Reviewed ML approaches for power systems; summarized trends and findings for stakeholders.</li>
-          <li>Evaluated algorithm effectiveness and presented insights; strengthened analytical communication.</li>
+          <li>Benchmarked 6+ machine learning algorithms (supervised, unsupervised, and deep learning) for applications in power systems, identifying the most effective methods for forecasting, optimization, and fault detection.</li>
+          <li>Conducted a comparative study and presented results to senior researchers, helping guide the department’s research priorities.</li>
+          <li>Enhanced technical communication by presenting findings in weekly research meetings, contributing to the integration of results into active projects.</li>
+          <li>Gained experience bridging AI research and energy applications, reinforcing my interest in applying data-driven approaches to real-world infrastructure challenges.</li>
         </ul>
       </article>
     </section>
@@ -195,8 +205,8 @@
           <span class="skill">Node.js</span>
           <span class="skill">Express</span>
           <span class="skill">Linux</span>
-          <span class="skill">Data Structures & Algos</span>
-          <span class="skill">Machine Learning (basics)</span>
+          <span class="skill">Data Structures & Algorithms</span>
+          <span class="skill">Machine Learning</span>
         </div>
       </div>
     </section>
@@ -204,30 +214,16 @@
     <section id="contact">
       <h2>Contact</h2>
       <div class="card grid">
-        <div class="row">
-          <div>
-            <p>Email: <a href="mailto:hkhan205@uic.edu">hkhan205@uic.edu</a></p>
-            <p>LinkedIn: <a href="https://linkedin.com/in/hamza-khan-39a761309" target="_blank" rel="noopener">/in/hamza-khan-39a761309</a></p>
-          </div>
-          <form id="contactForm" class="grid" style="min-width:280px; gap:10px;">
-            <label>
-              <span class="muted">Quick message</span>
-              <textarea name="message" rows="3" placeholder="Hello!" style="width:100%; border-radius:12px; padding:10px; border:1px solid color-mix(in oklab, var(--text) 16%, transparent); background: transparent; color: var(--text);"></textarea>
-            </label>
-            <button class="btn" type="submit">Send</button>
-            <p class="muted" id="contactStatus" role="status" aria-live="polite"></p>
-          </form>
+        <div>
+          <p>Email: <a href="mailto:khanhamza2293@gmail.com">khanhamza2293@gmail.com</a></p>
+          <p>LinkedIn: <a href="https://www.linkedin.com/in/hamzakhan205/" target="_blank" rel="noopener">/in/hamzakhan205/</a></p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="container">
-    <p>© <span id="year"></span> Hamza Khan. Built with semantic HTML, a dash of CSS, and vanilla JS. <span class="muted">(Ready for CloudFront/S3.)</span></p>
-  </footer>
 
   <script>
-    // Smooth scroll for internal links
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
         const id = a.getAttribute('href').slice(1);
@@ -236,7 +232,6 @@
       });
     });
 
-    // Theme toggle (persists in localStorage)
     const themeBtn = document.getElementById('themeBtn');
     const applyTheme = (mode) => {
       document.documentElement.dataset.theme = mode;
@@ -254,32 +249,12 @@
       applyTheme(mode);
     });
 
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Contact form: placeholder handler (replace with your backend/API Gateway endpoint)
-    document.getElementById('contactForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const status = document.getElementById('contactStatus');
-      status.textContent = 'Sending…';
-      try {
-        // TODO: replace with your API endpoint (AWS Lambda + API Gateway)
-        // await fetch('https://api.example.com/contact', { method:'POST', body: new FormData(e.target) });
-        await new Promise(r => setTimeout(r, 600)); // demo only
-        status.textContent = 'Thanks! I will get back to you.';
-        e.target.reset();
-      } catch(err) {
-        status.textContent = 'Something went wrong. Please email me directly.';
-      }
-    });
 
-    // Visitor count: placeholder (wire to DynamoDB/Lambda later)
     (async function() {
       const el = document.getElementById('visitors');
       try {
-        // TODO: replace with your GET endpoint, e.g. https://api.example.com/visitors
-        // const res = await fetch('https://api.example.com/visitors');
-        // const { count } = await res.json();
         const res = await fetch("https://3lgeqj8yjk.execute-api.us-east-1.amazonaws.com/prod/visitors");
         const data = await res.json();
         const count = data.visits;
@@ -289,23 +264,20 @@
       }
     })();
 
-    // Download resume PDF link placeholder — replace with your file path
     document.getElementById('resumeLink').addEventListener('click', (e) => {
-      e.preventDefault();
-      alert('Attach your PDF resume and update the link href to your file.');
+      console.log('Resume download initiated');
     });
   </script>
 
-  <!-- Structured data for richer search previews -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Hamza Khan",
-    "email": "mailto:hkhan205@uic.edu",
+    "email": "mailto:hamzakhan2293@gmail.com",
     "url": "https://example.com/",
     "sameAs": [
-      "https://linkedin.com/in/hamza-khan-39a761309"
+      "https://linkedin.com/in/hamzakhan205/"
     ],
     "jobTitle": "Computer Science Student",
     "alumniOf": [{"@type":"CollegeOrUniversity","name":"University of Illinois Chicago"}],
