@@ -20,9 +20,6 @@
       --accent: #8fff8f;
       --shadow: 0 10px 30px rgba(0,0,0,.35);
     }
-    @media (prefers-color-scheme: light) {
-      :root { --bg:#f7f7fb; --card:#ffffff; --text:#16171b; --muted:#555b66; --brand:#0066ff; --accent:#22aa66; }
-    }
     html, body { height: 100%; }
     * { box-sizing: border-box; }
     body {
@@ -95,7 +92,6 @@
           <li><a href="#experience">Experience</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><button class="btn" id="themeBtn" type="button" aria-label="Toggle theme">🌗 Theme</button></li>
         </ul>
       </nav>
     </div>
@@ -123,7 +119,9 @@
       <h2>About</h2>
       <div class="card">
         <p>
-          Hey! I’m Hamza, a Computer Science student in my junior year at the University of Illinois Chicago who loves building full-stack apps and diving into cloud technologies. I’m passionate about finding practical ways tech can solve real-world problems, and I’m always excited to learn, experiment, and grow. Scroll down to learn more about my projects and experiences!
+          Hey! I’m Hamza, a Computer Science student in my junior year at the University of Illinois Chicago.
+          I love building full-stack apps, diving into cloud technologies, and finding practical ways tech can solve real-world problems. 
+          I’m always looking to grow my skills, work with innovative people, and make an impact. Scroll down to learn more about my projects and experiences!
         </p>
       </div>
     </section>
@@ -232,22 +230,6 @@
       });
     });
 
-    const themeBtn = document.getElementById('themeBtn');
-    const applyTheme = (mode) => {
-      document.documentElement.dataset.theme = mode;
-      if (mode === 'light') {
-        document.documentElement.style.colorScheme = 'light';
-      } else {
-        document.documentElement.style.colorScheme = 'dark';
-      }
-    };
-    const stored = localStorage.getItem('theme');
-    if (stored) applyTheme(stored);
-    themeBtn.addEventListener('click', () => {
-      const mode = (document.documentElement.dataset.theme === 'light') ? 'dark' : 'light';
-      localStorage.setItem('theme', mode);
-      applyTheme(mode);
-    });
 
     document.addEventListener('DOMContentLoaded', function() {
       // Fetch visitor count
