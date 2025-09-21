@@ -123,7 +123,7 @@
       <h2>About</h2>
       <div class="card">
         <p>
-          Hey! I’m Hamza, a Computer Science student who loves building full-stack apps and diving into cloud technologies. I’m passionate about finding practical ways tech can solve real-world problems, and I’m always excited to learn, experiment, and grow. Scroll down to learn more about my projects and experiences!
+          Hey! I’m Hamza, a Computer Science student in my junior year at the University of Illinois Chicago who loves building full-stack apps and diving into cloud technologies. I’m passionate about finding practical ways tech can solve real-world problems, and I’m always excited to learn, experiment, and grow. Scroll down to learn more about my projects and experiences!
         </p>
       </div>
     </section>
@@ -249,42 +249,47 @@
       applyTheme(mode);
     });
 
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-
-    (async function() {
-  const el = document.getElementById('visitors');
-  try {
-    console.log("Starting visitor count fetch...");
-    const res = await fetch("https://cg8gabc5hd.execute-api.us-east-1.amazonaws.com/Prod/visitors");
-    console.log("Response status:", res.status);
-    console.log("Response headers:", res.headers);
-    
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
-    }
-    
-    const data = await res.json();
-    console.log("Raw API response:", data);
-    
-    // Check if data has the expected structure
-    if (data.body) {
-      const bodyData = JSON.parse(data.body);
-      console.log("Parsed body data:", bodyData);
-      const count = bodyData.visits;
-      el.textContent = `Visitors: ${count}`;
-    } else {
-      // Try direct access if no body property
-      console.log("No body property, trying direct access");
-      const count = data.visits;
-      el.textContent = `Visitors: ${count}`;
-    }
-  } catch (err) {
-    console.error("Error fetching visitors:", err);
-    console.error("Error details:", err.message);
-    el.textContent = 'Visitors: —';
-  }
-})();
+    document.addEventListener('DOMContentLoaded', function() {
+      // Fetch visitor count
+      (async function() {
+        const el = document.getElementById('visitors');
+        if (!el) {
+          console.error("Could not find element with ID 'visitors'");
+          return;
+        }
+        
+        try {
+          console.log("Starting visitor count fetch...");
+          const res = await fetch("https://cg8gabc5hd.execute-api.us-east-1.amazonaws.com/Prod/visitors");
+          console.log("Response status:", res.status);
+          console.log("Response headers:", res.headers);
+          
+          if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+          }
+          
+          const data = await res.json();
+          console.log("Raw API response:", data);
+          
+          // Check if data has the expected structure
+          if (data.body) {
+            const bodyData = JSON.parse(data.body);
+            console.log("Parsed body data:", bodyData);
+            const count = bodyData.visits;
+            el.textContent = `Visitors: ${count}`;
+          } else {
+            // Try direct access if no body property
+            console.log("No body property, trying direct access");
+            const count = data.visits;
+            el.textContent = `Visitors: ${count}`;
+          }
+        } catch (err) {
+          console.error("Error fetching visitors:", err);
+          console.error("Error details:", err.message);
+          el.textContent = 'Visitors: —';
+        }
+      })();
+    });
 
 
     document.getElementById('resumeLink').addEventListener('click', (e) => {
