@@ -255,15 +255,33 @@
     (async function() {
   const el = document.getElementById('visitors');
   try {
+    console.log("Starting visitor count fetch...");
     const res = await fetch("https://cg8gabc5hd.execute-api.us-east-1.amazonaws.com/Prod/visitors");
     console.log("Response status:", res.status);
+    console.log("Response headers:", res.headers);
+    
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+    
     const data = await res.json();
     console.log("Raw API response:", data);
-    const bodyData = JSON.parse(data.body);
-    const count = bodyData.visits;
-    el.textContent = `Visitors: ${count}`;
+    
+    // Check if data has the expected structure
+    if (data.body) {
+      const bodyData = JSON.parse(data.body);
+      console.log("Parsed body data:", bodyData);
+      const count = bodyData.visits;
+      el.textContent = `Visitors: ${count}`;
+    } else {
+      // Try direct access if no body property
+      console.log("No body property, trying direct access");
+      const count = data.visits;
+      el.textContent = `Visitors: ${count}`;
+    }
   } catch (err) {
     console.error("Error fetching visitors:", err);
+    console.error("Error details:", err.message);
     el.textContent = 'Visitors: —';
   }
 })();
