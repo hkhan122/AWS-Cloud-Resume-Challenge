@@ -253,16 +253,21 @@
 
 
     (async function() {
-      const el = document.getElementById('visitors');
-      try {
-        const res = await fetch("https://3lgeqj8yjk.execute-api.us-east-1.amazonaws.com/prod/visitors");
-        const data = await res.json();
-        const count = data.visits;
-        el.textContent = `Visitors: ${count}`;
-      } catch {
-        el.textContent = 'Visitors: —';
-      }
-    })();
+  const el = document.getElementById('visitors');
+  try {
+    const res = await fetch("https://cg8gabc5hd.execute-api.us-east-1.amazonaws.com/Prod/visitors");
+    console.log("Response status:", res.status);
+    const data = await res.json();
+    console.log("Raw API response:", data);
+    const bodyData = JSON.parse(data.body);
+    const count = bodyData.visits;
+    el.textContent = `Visitors: ${count}`;
+  } catch (err) {
+    console.error("Error fetching visitors:", err);
+    el.textContent = 'Visitors: —';
+  }
+})();
+
 
     document.getElementById('resumeLink').addEventListener('click', (e) => {
       console.log('Resume download initiated');
